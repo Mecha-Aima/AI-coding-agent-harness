@@ -1,0 +1,57 @@
+# Byte-compiled / optimized
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+coding-agent/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+
+# Testing & coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+
+# Type checkers / linters (local caches)
+.mypy_cache/
+.ruff_cache/
+.dmypy.json
+dmypy.json
+
+# Secrets & local env (keep *.example committed)
+.env
+.env.local
+.env.*.local
+
+# Logs & runtime artifacts
+*.log
+.agent_events.log
+.sessions/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+.idea/
+*.swp
+*.swo
+*~
+
+# Optional: local LiteLLM / proxy overrides with secrets (uncomment if needed)
+# litellm_config.local.yaml

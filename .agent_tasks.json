@@ -1,0 +1,20 @@
+[
+  {
+    "id": "16fdbf00",
+    "description": "Manual QA dummy task A",
+    "status": "done",
+    "priority": "low",
+    "depends_on": [],
+    "result": "Task A completed successfully"
+  },
+  {
+    "id": "e338bfd8",
+    "description": "Task B depends on A",
+    "status": "done",
+    "priority": "medium",
+    "depends_on": [
+      "16fdbf00"
+    ],
+    "result": "QA test of bash_background tool - successfully ran sleep 2 && echo done-bg with label qa-sleep, received completion notification"
+  }
+]

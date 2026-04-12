@@ -1,0 +1,10 @@
+# Optional LiteLLM proxy (not used by default).
+# Install: pip install "litellm[proxy]"
+# Run: litellm --config litellm_config.yaml --port 4000
+# Then set ANTHROPIC_BASE_URL=http://localhost:4000 and MODEL_ID to model_list name.
+
+model_list:
+  - model_name: my-model
+    litellm_params:
+      model: anthropic/claude-sonnet-4-5-20250514
+      api_key: os.environ/ANTHROPIC_API_KEY

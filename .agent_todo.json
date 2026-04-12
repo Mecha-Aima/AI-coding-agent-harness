@@ -1,0 +1,17 @@
+[
+  {
+    "id": 0,
+    "task": "Verify read tool",
+    "status": "done"
+  },
+  {
+    "id": 1,
+    "task": "Verify grep tool",
+    "status": "pending"
+  },
+  {
+    "id": 2,
+    "task": "Write summary",
+    "status": "pending"
+  }
+]
