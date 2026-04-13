@@ -2,7 +2,7 @@
 
 **Klauso** is a **single-process, async Python** terminal harness around the **Anthropic Messages API**: one lead agent with streaming, parallel tool execution, YAML permissions, an event bus, persisted sessions, context compaction, todos and a task graph, skills, background shell jobs, optional teammate threads and autonomous workers, git worktrees, MCP (stdio) tools, subagents, and cooperative interrupts.
 
-Install from PyPI (when published) or from a checkout.
+Install from [PyPI](https://pypi.org/project/klauso/) or from a checkout. Maintainer publishing steps: [docs/PUBLISHING.md](docs/PUBLISHING.md). Manual QA in another folder: [docs/MANUAL_TESTING.md](docs/MANUAL_TESTING.md).
 
 ## Quick start (pip / pipx)
 
@@ -144,30 +144,6 @@ YAML details: [config/README.md](config/README.md).
 
 If the proxy rejects prompt caching, set `CACHE_MODE=off`.
 
-## Manual testing matrix
-
-Use a throwaway branch or copy repo.
-
-1. **Filesystem:** `read` → `write` → `revert` on a small file.  
-2. **Parallel tools:** one turn with `read` + `glob` + `grep`.  
-3. **Revert:** new file then edited file.  
-4. **Shell:** `pwd`, `ls`, `git status` (read-only git).  
-5. **Git ask:** `git commit` (expect confirmation prompt per `permissions.yaml`).  
-6. **Deny:** command matching `always_deny` (e.g. `sudo ls`).  
-7. **Todos:** `todo_write` → `todo_read` → `todo_update`.  
-8. **Tasks:** `task_create` → `task_list` → `task_update` → `task_next`.  
-9. **Skills:** `list_skills` → `load_skill`.  
-10. **Background:** `bash_background` with short sleep; next line drains notification.  
-11. **Teams** (`ENABLE_TEAMS=1`): `list_teammates` → `send_to_teammate`.  
-12. **Worktrees:** `worktree_create` / `worktree_remove` on a test branch.  
-13. **Subagent:** `spawn_subagent` with a narrow read-only prompt.  
-14. **MCP filesystem:** call an `mcp__filesystem__*` tool within allowed roots.  
-15. **MCP GitHub:** call an `mcp__github__*` tool with token set.  
-16. **Extra MCP:** add a third stdio server in `mcp_config.yaml`, restart, verify tools.  
-17. **Sessions:** `:save`, restart, `:resume <id>`; `:fork`, `:title`, `:sessions`.  
-18. **Batch:** multiple tools with one denied — others still complete.  
-19. **Install smoke:** fresh venv, `pip install dist/klauso-*.whl`, `klauso --help`.
-
 ## Tests
 
 ```bash
@@ -177,10 +153,7 @@ python3 -m pytest tests/ -q
 
 ## Publishing to PyPI
 
-1. `python3 -m pip install build twine`  
-2. `python3 -m build`  
-3. Prefer **[Trusted Publishing](https://docs.pypi.org/trusted-publishers/)** from GitHub Actions over long-lived API tokens.  
-4. `twine upload dist/*` as a fallback.
+See **[docs/PUBLISHING.md](docs/PUBLISHING.md)** for what credentials or PyPI settings are required. This repo includes **[.github/workflows/publish.yml](.github/workflows/publish.yml)** for **Trusted Publishing** (OIDC) when you publish a **GitHub Release**; configure the pending publisher on PyPI for your repository and workflow name first.
 
 ## ADR: Anthropic-native tool protocol
 
