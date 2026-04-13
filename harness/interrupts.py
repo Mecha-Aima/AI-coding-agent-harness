@@ -5,8 +5,6 @@ from typing import Any, Callable, List, Optional, Union
 
 interrupt_queue: Optional[asyncio.Queue] = None
 
-# Cooperative abort while the model stream runs inside a worker thread (SIGINT
-# does not reliably raise KeyboardInterrupt on the awaiting asyncio task).
 stream_abort_event = threading.Event()
 _loop_for_sigint: Optional[asyncio.AbstractEventLoop] = None
 _prev_sigint_handler: Optional[Union[Callable[..., Any], int]] = None

@@ -74,8 +74,6 @@ async def mcp_lifespan() -> AsyncIterator[List[Dict[str, Any]]]:
                     args=srv_cfg.get("args", []),
                 )
 
-                # stack.enter_async_context handles __aenter__ and registers
-                # __aexit__ to run when the stack closes — same task, correct order.
                 read_stream, write_stream = await stack.enter_async_context(
                     stdio_client(params)
                 )
@@ -107,13 +105,11 @@ async def mcp_lifespan() -> AsyncIterator[List[Dict[str, Any]]]:
             except Exception as e:
                 print(f"\033[31m  [MCP] Failed to connect to '{server_name}': {e}\033[0m")
 
-        # Yield inside the stack so all CMs stay alive until the caller's block exits.
         try:
             yield discovered
         finally:
             MCP_SESSIONS.clear()
             MCP_TOOL_MAP.clear()
-        # AsyncExitStack.__aexit__ runs here, tearing down stdio + sessions cleanly.
 
 
 async def execute_mcp_tool(prefixed_name: str, arguments: Dict[str, Any]) -> str:

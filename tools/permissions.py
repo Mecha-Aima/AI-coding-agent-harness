@@ -26,7 +26,6 @@ def permission_check_string(tool_name: str, tool_input: Dict[str, Any]) -> str:
         return f"grep {pat} {path} recursive={rec}"
     if tool_name == "glob":
         return str(tool_input.get("pattern") or "")
-    # First value matches legacy s15 for unknown / extended tools
     return str(next(iter(tool_input.values()), tool_name))
 
 

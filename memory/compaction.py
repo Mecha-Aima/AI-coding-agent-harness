@@ -5,7 +5,7 @@ from typing import Any, Dict, List
 from core.client import client
 from core.settings import MODEL
 
-COMPRESS_THRESHOLD = 20_000  # characters; ~5k tokens — compact before context gets unwieldy
+COMPRESS_THRESHOLD = 20_000  # characters — compact before context gets unwieldy
 KEEP_RECENT = 6
 MEMORY_FILE = Path(".agent_memory.md")
 
