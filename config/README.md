@@ -1,6 +1,6 @@
 # Configuration
 
-YAML files in this directory are loaded at runtime from `core.settings.CONFIG_DIR` (repository `config/`).
+YAML files are loaded from **`klauso.core.settings.CONFIG_DIR`**: by default `<workspace>/config/` after Klauso seeds missing files from `klauso.resources`. Override with **`KLAUSO_CONFIG_DIR`** or `klauso --config-dir`.
 
 ## `permissions.yaml`
 
@@ -16,7 +16,7 @@ Rule-based gating for tool invocations. Patterns are **Python regex** strings ma
 
 **Evaluation order:** `always_deny` → `always_allow` → `ask_user` (interactive `y/N` in the async path) → default allow.
 
-Edit patterns to match your org’s risk tolerance. Dangerous fragments are also blocked inside `tools/builtin.py` for `bash`.
+Destructive patterns belong in **`always_deny`**. Read-only **`git`** commands use explicit **`always_allow`** rules; any other **`git`** command matches **`ask_user`**. Dangerous fragments are also blocked inside `klauso.tools.builtin` for `bash`.
 
 ## `mcp_config.yaml`
 
@@ -28,8 +28,8 @@ Declares **stdio** MCP servers. Each entry under `servers` can include:
 | `transport` | Only `stdio` is implemented |
 | `command` / `args` | Spawn line for the MCP server process |
 
-The harness opens **all** configured servers inside one `AsyncExitStack` for the lifetime of `main.amain()`, so teardown stays in the same asyncio task (avoids cancel-scope issues with anyio).
+The harness opens **all** configured servers inside one `AsyncExitStack` for the lifetime of the CLI `amain()` coroutine, so teardown stays in the same asyncio task (avoids cancel-scope issues with anyio).
 
-**Requirements:** `pip install mcp` (see root `requirements.txt`). External binaries such as `npx` or `uvx` must exist on `PATH` if referenced.
+**Requirements:** `mcp` is a dependency of the `klauso` package. External binaries such as `npx` must exist on `PATH` for the default filesystem and GitHub servers.
 
-Example servers in the sample file point at common MCP packages; uncomment or adjust for your environment.
+Default Klauso resources include **filesystem** and **GitHub** servers; add more entries under `servers:` for additional stdio MCP servers.

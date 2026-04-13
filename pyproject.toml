@@ -1,0 +1,48 @@
+[build-system]
+requires = ["hatchling>=1.24.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "klauso"
+version = "0.1.0"
+description = "Klauso — terminal agentic coding harness (Anthropic Messages API, tools, MCP, teams)"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Klauso contributors" }]
+keywords = ["anthropic", "claude", "agent", "mcp", "coding-agent"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+  "anthropic>=0.40.0",
+  "python-dotenv>=1.0.0",
+  "colorama>=0.4.6",
+  "PyYAML>=6.0.1",
+  "mcp>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "build>=1.0.0",
+]
+
+[project.scripts]
+klauso = "klauso.cli:main"
+
+[project.urls]
+Homepage = "https://pypi.org/project/klauso/"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/klauso"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

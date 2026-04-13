@@ -1,4 +1,5 @@
-# MCP servers — filesystem + GitHub defaults; add more stdio servers as needed.
+# Klauso default MCP servers (seeded to workspace config/ when missing).
+# Add more stdio servers under `servers:` as needed.
 
 servers:
   - name: filesystem

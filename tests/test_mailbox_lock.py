@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-import harness.teams as teams
+import klauso.harness.teams as teams
 
 
 @pytest.fixture

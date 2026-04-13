@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install and test
+        run: |
+          python -m pip install -U pip
+          python -m pip install -e ".[dev]"
+          python -m pytest tests/ -q
+      - name: Build wheel
+        run: |
+          python -m pip install build
+          python -m build
+      - name: Install wheel smoke
+        run: |
+          python -m venv /tmp/klauso-venv
+          /tmp/klauso-venv/bin/pip install dist/klauso-*.whl
+          /tmp/klauso-venv/bin/klauso --help

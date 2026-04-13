@@ -1,4 +1,4 @@
-from harness.loop import build_async_dispatch, build_merged_tool_definitions
+from klauso.harness.loop import build_async_dispatch, build_merged_tool_definitions
 
 
 def test_merged_tools_include_core_names():

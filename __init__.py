@@ -1,1 +1,1 @@
-# Unified coding agent harness (s01–s21).
+"""Repository root shim; installable package lives under ``src/klauso``."""

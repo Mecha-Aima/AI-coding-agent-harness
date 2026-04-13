@@ -1,6 +1,6 @@
 from types import SimpleNamespace
 
-from utils.serialization import serialize_messages
+from klauso.utils.serialization import serialize_messages
 
 
 def test_serialize_messages_dict_content_roundtrip():
