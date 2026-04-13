@@ -1,4 +1,4 @@
-# config/permissions.yaml — same policy as klauso/resources/permissions.yaml
+# Klauso default permissions (seeded to workspace config/ when missing).
 # Evaluation order: always_deny → always_allow → ask_user → default allow.
 
 always_deny:

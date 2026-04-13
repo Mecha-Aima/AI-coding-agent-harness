@@ -1,6 +1,6 @@
 import pytest
 
-from tools.permissions import check_permission_sync, permission_check_string
+from klauso.tools.permissions import check_permission_sync, permission_check_string
 
 
 def test_permission_check_string_bash_uses_command_not_json():

@@ -2,8 +2,8 @@ import asyncio
 from types import SimpleNamespace
 from unittest.mock import AsyncMock, patch
 
-from harness.events import bus
-from harness.loop import dispatch_one_tool
+from klauso.harness.events import bus
+from klauso.harness.loop import dispatch_one_tool
 
 
 def test_pre_tool_use_hook_blocks_execution():
@@ -50,7 +50,7 @@ def test_parallel_dispatch_results_all_ids():
     dispatch = {"read": AsyncMock(return_value="ok-read"), "glob": AsyncMock(return_value="ok-glob")}
 
     async def _run():
-        with patch("harness.loop.check_permission_async", new_callable=AsyncMock) as perm:
+        with patch("klauso.harness.loop.check_permission_async", new_callable=AsyncMock) as perm:
             perm.return_value = (True, "")
             results = await asyncio.gather(
                 *[dispatch_one_tool(b, set(), dispatch, rules) for b in blocks]

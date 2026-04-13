@@ -1,4 +1,4 @@
-import memory.compaction as compaction
+import klauso.memory.compaction as compaction
 
 
 def test_maybe_compact_shrinks_history(monkeypatch, tmp_path):
